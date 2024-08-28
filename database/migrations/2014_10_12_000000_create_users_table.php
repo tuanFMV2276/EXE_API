@@ -19,8 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['Customer', 'Designer', 'Supplier']);
-            $table->boolean('is_premium')->default(false);
+            $table->string('phone')->unique()->nullable();;
+            $table->text('address')->nullable();
+            $table->string('gender')->nullable();
+            $table->enum('role', ['Customer', 'Designer', 'Supplier'])->nullable();
+            $table->boolean('is_premium')->default(false)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
