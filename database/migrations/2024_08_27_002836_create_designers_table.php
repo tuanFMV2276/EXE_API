@@ -15,7 +15,7 @@ class CreateDesignersTable extends Migration
     {
         Schema::create('designers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('no action');
             $table->string('full_name');
             $table->text('contact_info')->nullable();
             $table->text('bio')->nullable();

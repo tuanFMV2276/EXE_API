@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -12,7 +13,7 @@ class NewsController extends Controller
         // Lấy tất cả các bài viết tin tức
         $news = News::with('user')->get();
 
-        return response()->json([
+        return Response()->json([
             'status' => 'success',
             'data' => $news
         ]);

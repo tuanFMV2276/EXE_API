@@ -15,12 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained('users')->onDelete('no action');
             $table->decimal('total_amount', 18, 2);
             $table->text('shipping_address');
             $table->timestamps();
         });
-        
     }
 
     /**
