@@ -36,7 +36,7 @@ Route::apiResource('designer-materials', DesignerMaterialController::class);
 Route::apiResource('materials', MaterialController::class);
 Route::apiResource('news', NewsController::class);
 Route::apiResource('orders', OrderController::class);
-Route::apiResource('order-deatils', OrderDetailController::class);
+Route::apiResource('order-details', OrderDetailController::class);
 Route::apiResource('premium-features', PremiumFeatureController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('subscriptions', SubscriptionController::class);
