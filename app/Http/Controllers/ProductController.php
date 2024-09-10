@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function index()
     {
         // Lấy tất cả sản phẩm cùng thông tin nhà thiết kế và nhà cung ứng
-        $products = Product::with(['designer', 'supplier'])->get();
+        $products = Product::with(['designer'])->get();
 
         return response()->json([
             'status' => 'success',
@@ -26,7 +26,6 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'designer_id' => 'required|exists:designers,id',
-            'supplier_id' => 'nullable|exists:suppliers,id',
         ]);
 
         // Tạo sản phẩm mới
@@ -42,7 +41,7 @@ class ProductController extends Controller
     public function show($id)
     {
         // Lấy thông tin sản phẩm cùng nhà thiết kế và nhà cung ứng
-        $product = Product::with(['designer', 'supplier'])->findOrFail($id);
+        $product = Product::with(['designer'])->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
@@ -56,11 +55,10 @@ class ProductController extends Controller
 
         // Validate dữ liệu đầu vào
         $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
+            'product_name' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'sometimes|required|numeric',
             'designer_id' => 'sometimes|required|exists:designers,id',
-            'supplier_id' => 'nullable|exists:suppliers,id',
         ]);
 
         // Cập nhật sản phẩm
