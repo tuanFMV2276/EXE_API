@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->nullable();;
             $table->text('address')->nullable();
             $table->string('gender')->nullable();
-            $table->enum('role', ['Customer', 'Designer', 'Supplier'])->nullable();
+            $table->enum('role', ['Customer', 'Designer', 'Supplier'])->default('Customer')->nullable();
             $table->boolean('is_premium')->default(false)->nullable();
             $table->rememberToken();
             $table->timestamps();
