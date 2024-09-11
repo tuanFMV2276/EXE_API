@@ -9,7 +9,6 @@ class OrderController extends Controller
 {
     public function index()
     {
-        // Lấy tất cả đơn hàng cùng chi tiết đơn hàng và thông tin người dùng
         $orders = Order::with(['orderDetails', 'user'])->get();
 
         return response()->json([
@@ -20,14 +19,12 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'total_price' => 'required|numeric',
             'status' => 'required|string',
         ]);
 
-        // Tạo đơn hàng mới
         $order = Order::create($validated);
 
         return response()->json([
@@ -39,7 +36,6 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        // Lấy thông tin đơn hàng cùng chi tiết đơn hàng và người dùng
         $order = Order::with(['orderDetails', 'user'])->findOrFail($id);
 
         return response()->json([
@@ -52,13 +48,11 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'total_price' => 'sometimes|required|numeric',
             'status' => 'sometimes|required|string',
         ]);
 
-        // Cập nhật đơn hàng
         $order->update($validated);
 
         return response()->json([

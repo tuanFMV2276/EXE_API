@@ -20,14 +20,12 @@ class UserFeatureController extends Controller
 
     public function store(Request $request)
     {
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'premium_feature_id' => 'required|exists:premium_features,id',
             'status' => 'required|string',
         ]);
 
-        // Tạo tính năng mới cho người dùng
         $userFeature = UserFeature::create($validated);
 
         return response()->json([
@@ -39,7 +37,6 @@ class UserFeatureController extends Controller
 
     public function show($id)
     {
-        // Lấy thông tin tính năng người dùng và thông tin người dùng và tính năng premium liên quan
         $userFeature = UserFeature::with(['user', 'premiumFeature'])->findOrFail($id);
 
         return response()->json([
@@ -51,13 +48,10 @@ class UserFeatureController extends Controller
     public function update(Request $request, $id)
     {
         $userFeature = UserFeature::findOrFail($id);
-
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'status' => 'sometimes|required|string',
         ]);
 
-        // Cập nhật tính năng người dùng
         $userFeature->update($validated);
 
         return response()->json([

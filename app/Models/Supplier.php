@@ -15,14 +15,12 @@ class Supplier extends Model
         'contact_info',
         'address',
     ];
-
-    // Một Supplier thuộc về một User
+    
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Một Supplier có thể cung cấp nhiều Materials
     public function materials()
     {
         return $this->hasMany(Material::class);

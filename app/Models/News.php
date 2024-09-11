@@ -15,7 +15,6 @@ class News extends Model
         'author_id',
     ];
 
-    // Một News thuộc về một User (Author)
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

@@ -16,19 +16,16 @@ class Designer extends Model
         'bio',
     ];
 
-    // Một Designer thuộc về một User
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Một Designer có thể có nhiều Products
     public function products()
     {
         return $this->hasMany(Product::class);
     }
 
-    // Một Designer có thể yêu cầu nhiều Materials thông qua DesignerMaterials
     public function materials()
     {
         return $this->belongsToMany(Material::class, 'designer_materials')
@@ -36,7 +33,6 @@ class Designer extends Model
             ->withTimestamps();
     }
 
-    // Một Designer có thể có nhiều DesignerMaterials
     public function designerMaterials()
     {
         return $this->hasMany(DesignerMaterial::class);

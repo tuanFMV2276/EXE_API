@@ -13,7 +13,6 @@ class Image extends Model
     ];
 
 
-    // Một Image có một Products
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

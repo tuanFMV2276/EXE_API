@@ -15,13 +15,11 @@ class Order extends Model
         'shipping_address',
     ];
 
-    // Một Order thuộc về một User (Customer)
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id');
     }
 
-    // Một Order có thể có nhiều OrderDetails
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);

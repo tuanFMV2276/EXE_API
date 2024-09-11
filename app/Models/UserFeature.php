@@ -15,13 +15,11 @@ class UserFeature extends Model
         'activated_date',
     ];
 
-    // Một UserFeature thuộc về một User
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Một UserFeature thuộc về một PremiumFeature
     public function premiumFeature()
     {
         return $this->belongsTo(PremiumFeature::class, 'feature_id');
