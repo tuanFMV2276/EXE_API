@@ -17,7 +17,7 @@ class CreateProductSizesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('size');
-            $table->integer('stock');
+            $table->integer('stock')->default('0');
             $table->timestamps();
 
             // Thiết lập khóa ngoại
