@@ -81,7 +81,7 @@ class User extends Authenticatable
     // Một User có thể có nhiều PremiumFeatures thông qua UserFeatures
     public function premiumFeatures()
     {
-        return $this->belongsToMany(PremiumFeature::class, 'user_features')
+        return $this->belongsToMany(PremiumFeature::class, 'user_features', 'user_id', 'feature_id')
             ->withPivot('activated_date')
             ->withTimestamps();
     }
