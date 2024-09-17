@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Designer;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class DesignerController extends Controller
@@ -20,8 +21,9 @@ class DesignerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:designers',
+            'user_id' => 'required',
+            'full_name' => 'required|string|max:255',
+            'contact_info' => 'required|string|max:255',
             'bio' => 'nullable|string',
         ]);
 
@@ -33,6 +35,12 @@ class DesignerController extends Controller
             'data' => $designer
         ], 201);
     }
+
+    // public function store(Request $request)
+    // {
+    //     $cutomer = Designer::create($request->all());
+    //     return response()->json($cutomer, 201);
+    // }
 
     public function show($id)
     {
@@ -50,8 +58,8 @@ class DesignerController extends Controller
         $designer = Designer::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|string|email|max:255|unique:designers,email,' . $designer->id,
+            'full_name' => 'sometimes|required|string|max:255',
+            'contact_info' => 'sometimes|required|string|email|max:255|unique:designers,email,' . $designer->id,
             'bio' => 'nullable|string',
         ]);
 
