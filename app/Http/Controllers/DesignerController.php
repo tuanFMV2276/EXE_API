@@ -29,6 +29,10 @@ class DesignerController extends Controller
 
         $designer = Designer::create($validated);
 
+        $user = \App\Models\User::findOrFail($validated['user_id']);
+        $user->role = 'Designer';
+        $user->save();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Designer created successfully',
@@ -58,12 +62,14 @@ class DesignerController extends Controller
         $designer = Designer::findOrFail($id);
 
         $validated = $request->validate([
+            'user_id' => 'required',
             'full_name' => 'sometimes|required|string|max:255',
             'contact_info' => 'sometimes|required|string|email|max:255|unique:designers,email,' . $designer->id,
             'bio' => 'nullable|string',
         ]);
 
         $designer->update($validated);
+
 
         return response()->json([
             'status' => 'success',
