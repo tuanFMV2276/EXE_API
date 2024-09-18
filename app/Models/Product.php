@@ -16,17 +16,26 @@ class Product extends Model
         'price',
         'stock_quantity',
         'is_premium',
+        'category'
     ];
 
-    // Một Product thuộc về một Designer
     public function designer()
     {
         return $this->belongsTo(Designer::class);
     }
 
-    // Một Product có thể có trong nhiều OrderDetails
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function sizes()
+    {
+        return $this->hasMany(ProductSize::class);
     }
 }

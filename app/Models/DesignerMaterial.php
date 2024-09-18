@@ -17,13 +17,11 @@ class DesignerMaterial extends Model
         'status',
     ];
 
-    // Một DesignerMaterial thuộc về một Designer
     public function designer()
     {
         return $this->belongsTo(Designer::class);
     }
 
-    // Một DesignerMaterial thuộc về một Material
     public function material()
     {
         return $this->belongsTo(Material::class);

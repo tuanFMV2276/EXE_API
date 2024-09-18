@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->foreignId('designer_id')->constrained()->onDelete('no action');
             $table->string('product_name');
+            $table->string('category')->nullable();;
             $table->text('description')->nullable();
             $table->decimal('price', 18, 2);
             $table->integer('stock_quantity')->default(0);

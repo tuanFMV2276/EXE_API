@@ -9,7 +9,6 @@ class SubscriptionController extends Controller
 {
     public function index()
     {
-        // Lấy tất cả gói đăng ký cùng thông tin người dùng
         $subscriptions = Subscription::with('user')->get();
 
         return response()->json([
@@ -20,7 +19,6 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'plan' => 'required|string',
@@ -28,7 +26,6 @@ class SubscriptionController extends Controller
             'expires_at' => 'required|date',
         ]);
 
-        // Tạo gói đăng ký mới
         $subscription = Subscription::create($validated);
 
         return response()->json([
@@ -40,7 +37,6 @@ class SubscriptionController extends Controller
 
     public function show($id)
     {
-        // Lấy thông tin gói đăng ký cùng thông tin người dùng
         $subscription = Subscription::with('user')->findOrFail($id);
 
         return response()->json([
@@ -53,14 +49,13 @@ class SubscriptionController extends Controller
     {
         $subscription = Subscription::findOrFail($id);
 
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'plan' => 'sometimes|required|string',
             'status' => 'sometimes|required|string',
             'expires_at' => 'sometimes|required|date',
         ]);
 
-        // Cập nhật gói đăng ký
+
         $subscription->update($validated);
 
         return response()->json([

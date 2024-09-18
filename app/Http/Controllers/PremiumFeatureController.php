@@ -9,7 +9,6 @@ class PremiumFeatureController extends Controller
 {
     public function index()
     {
-        // Lấy tất cả tính năng premium và các gói đăng ký liên quan
         $premiumFeatures = PremiumFeature::with('subscriptions')->get();
 
         return response()->json([
@@ -20,13 +19,11 @@ class PremiumFeatureController extends Controller
 
     public function store(Request $request)
     {
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
-        // Tạo tính năng premium mới
         $premiumFeature = PremiumFeature::create($validated);
 
         return response()->json([
@@ -38,7 +35,6 @@ class PremiumFeatureController extends Controller
 
     public function show($id)
     {
-        // Lấy thông tin tính năng premium và các gói đăng ký liên quan
         $premiumFeature = PremiumFeature::with('subscriptions')->findOrFail($id);
 
         return response()->json([
@@ -51,13 +47,11 @@ class PremiumFeatureController extends Controller
     {
         $premiumFeature = PremiumFeature::findOrFail($id);
 
-        // Validate dữ liệu đầu vào
         $validated = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
-        // Cập nhật tính năng premium
         $premiumFeature->update($validated);
 
         return response()->json([

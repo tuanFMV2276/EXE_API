@@ -17,7 +17,6 @@ class Subscription extends Model
         'is_active',
     ];
 
-    // Một Subscription thuộc về một User
     public function user()
     {
         return $this->belongsTo(User::class);

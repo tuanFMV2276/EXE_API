@@ -8,6 +8,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PremiumFeatureController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductImageController;
+use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -42,6 +44,9 @@ Route::apiResource('products', ProductController::class);
 Route::apiResource('subscriptions', SubscriptionController::class);
 Route::apiResource('suppliers', SupplierController::class);
 Route::apiResource('user-features', UserFeatureController::class);
+
+Route::apiResource('images', ProductImageController::class);
+Route::apiResource('product-sizes', ProductSizeController::class);
 
 use App\Http\Controllers\API\AuthController;
 

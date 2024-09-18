@@ -15,7 +15,6 @@ class PremiumFeature extends Model
         'is_designer_feature',
     ];
 
-    // Một PremiumFeature có thể được sử dụng bởi nhiều Users thông qua UserFeatures
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_features')
