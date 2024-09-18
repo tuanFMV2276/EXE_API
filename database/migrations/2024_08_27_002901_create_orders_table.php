@@ -17,7 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('users')->onDelete('no action');
             $table->decimal('total_amount', 18, 2);
+            $table->text('full_name');
             $table->text('shipping_address');
+            $table->string('phone');
+            $table->string('payment_method');
             $table->timestamps();
         });
     }

@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderDetail;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
-class OrderDetailController extends Controller
+class CartController extends Controller
 {
-    /**
-     * Display a listing of order details with related orders and products.
-     */
+
     public function index()
     {
-        $orderDetails = OrderDetail::with(['order', 'product'])->get();
+        $orderDetails = Cart::with(['user', 'product'])->get();
 
         return response()->json([
             'status' => 'success',
@@ -20,44 +18,39 @@ class OrderDetailController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created order detail in storage.
-     */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'order_id' => 'required|exists:orders,id',
+            'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
             'total_price' => 'required|numeric|min:0',
         ]);
 
-        $orderDetail = OrderDetail::create($validated);
+        $cart = Cart::create($validated);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Order detail created successfully',
-            'data' => $orderDetail
+            'message' => 'Cart created successfully',
+            'data' => $cart
         ], 201);
     }
 
-    /**
-     * Display the specified order detail with related order and product.
-     */
     public function show($id)
     {
-        $orderDetail = OrderDetail::with(['order', 'product'])->find($id);
+        $cart = Cart::with(['user', 'product'])->find($id);
 
-        if (!$orderDetail) {
+        if (!$cart) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Order detail not found'
+                'message' => 'Cart not found'
             ], 404);
         }
 
         return response()->json([
             'status' => 'success',
-            'data' => $orderDetail
+            'data' => $cart
         ]);
     }
 
@@ -66,28 +59,28 @@ class OrderDetailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $orderDetail = OrderDetail::find($id);
+        $cart = Cart::find($id);
 
-        if (!$orderDetail) {
+        if (!$cart) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Order detail not found'
+                'message' => 'Cart not found'
             ], 404);
         }
 
         $validated = $request->validate([
-            'order_id' => 'sometimes|required|exists:orders,id',
+            'user_id' => 'sometimes|required|exists:users,id',
             'product_id' => 'sometimes|required|exists:products,id',
             'quantity' => 'sometimes|required|integer|min:1',
             'total_price' => 'sometimes|required|numeric|min:0',
         ]);
 
-        $orderDetail->update($validated);
+        $cart->update($validated);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Order detail updated successfully',
-            'data' => $orderDetail
+            'message' => 'Cart updated successfully',
+            'data' => $cart
         ]);
     }
 
@@ -96,12 +89,12 @@ class OrderDetailController extends Controller
      */
     public function destroy($id)
     {
-        $orderDetail = OrderDetail::find($id);
+        $orderDetail = Cart::find($id);
 
         if (!$orderDetail) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Order detail not found'
+                'message' => 'Cart not found'
             ], 404);
         }
 
@@ -109,7 +102,7 @@ class OrderDetailController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Order detail deleted successfully'
+            'message' => 'Cart deleted successfully'
         ], 200);
     }
 }

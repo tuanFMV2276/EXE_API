@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->string('sub_category')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 18, 2);
-            $table->integer('stock_quantity')->default(0);
             $table->boolean('is_premium')->default(false);
             $table->timestamps();
         });
