@@ -24,6 +24,8 @@ class CartController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
+            'size' => 'required|string',
+            'color' => 'required|string',
             'quantity' => 'required|integer|min:1',
             'total_price' => 'required|numeric|min:0',
         ]);
@@ -71,6 +73,8 @@ class CartController extends Controller
         $validated = $request->validate([
             'user_id' => 'sometimes|required|exists:users,id',
             'product_id' => 'sometimes|required|exists:products,id',
+            'size' => 'required|string',
+            'color' => 'required|string',
             'quantity' => 'sometimes|required|integer|min:1',
             'total_price' => 'sometimes|required|numeric|min:0',
         ]);

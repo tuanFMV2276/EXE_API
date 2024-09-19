@@ -14,7 +14,6 @@ class Product extends Model
         'product_name',
         'description',
         'price',
-        'stock_quantity',
         'is_premium',
         'category',
         'sub_category'
@@ -38,5 +37,10 @@ class Product extends Model
     public function sizes()
     {
         return $this->hasMany(ProductSize::class);
+    }
+
+    public function colors()
+    {
+        return $this->hasMany(ProductColor::class);
     }
 }

@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductSize extends Model
+class ProductColor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'size', 'min_width', 'max_width', 'min_heigh', 'max_heigh'];
+    protected $fillable = [
+        'product_id',
+        'color_name',
+        'color_template',
+        'description'
+    ];
 
     public function product()
     {

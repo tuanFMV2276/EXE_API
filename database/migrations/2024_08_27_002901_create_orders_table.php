@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->text('shipping_address');
             $table->string('phone');
             $table->string('payment_method');
+            $table->string('status')->default("Waiting");
             $table->timestamps();
         });
     }

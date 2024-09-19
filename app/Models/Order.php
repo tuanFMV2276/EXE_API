@@ -12,7 +12,11 @@ class Order extends Model
     protected $fillable = [
         'customer_id',
         'total_amount',
+        'full_name',
         'shipping_address',
+        'phone',
+        'payment_method',
+        'status'
     ];
 
     public function customer()
@@ -25,12 +29,12 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
-//     $orders = Order::with('orderDetails.product')->get();
+    //     $orders = Order::with('orderDetails.product')->get();
 
-// foreach ($orders as $order) {
-//     foreach ($order->orderDetails as $detail) {
-//         echo $detail->product->product_name;
-//     }
-// }
+    // foreach ($orders as $order) {
+    //     foreach ($order->orderDetails as $detail) {
+    //         echo $detail->product->product_name;
+    //     }
+    // }
 
 }
