@@ -28,6 +28,8 @@ class OrderDetailController extends Controller
         $validated = $request->validate([
             'order_id' => 'required|exists:orders,id',
             'product_id' => 'required|exists:products,id',
+            'size' => 'required|string',
+            'color' => 'required|string',
             'quantity' => 'required|integer|min:1',
             'total_price' => 'required|numeric|min:0',
         ]);
@@ -78,6 +80,8 @@ class OrderDetailController extends Controller
         $validated = $request->validate([
             'order_id' => 'sometimes|required|exists:orders,id',
             'product_id' => 'sometimes|required|exists:products,id',
+            'size' => 'required|string',
+            'color' => 'required|string',
             'quantity' => 'sometimes|required|integer|min:1',
             'total_price' => 'sometimes|required|numeric|min:0',
         ]);

@@ -17,12 +17,22 @@ class OrderController extends Controller
         ]);
     }
 
+    // 'customer_id',
+    //     'total_amount',
+    //     'full_name',
+    //     'shipping_address',
+    //     'phone',
+    //     'payment_method',
+    //     'status'
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'total_price' => 'required|numeric',
-            'status' => 'required|string',
+            'customer_id' => 'required|exists:users,id',
+            'total_amount' => 'required|numeric',
+            'full_name' => 'required|string',
+            'shipping_address' => 'required|string',
+            'phone' => 'required|string',
+            'payment_method' => 'required|string',
         ]);
 
         $order = Order::create($validated);
@@ -49,8 +59,12 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
         $validated = $request->validate([
-            'total_price' => 'sometimes|required|numeric',
-            'status' => 'sometimes|required|string',
+            'customer_id' => 'required|exists:users,id',
+            'total_amount' => 'required|numeric',
+            'full_name' => 'required|string',
+            'shipping_address' => 'required|string',
+            'phone' => 'required|string',
+            'payment_method' => 'required|string',
         ]);
 
         $order->update($validated);
