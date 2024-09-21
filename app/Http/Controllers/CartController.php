@@ -28,6 +28,8 @@ class CartController extends Controller
             'color' => 'required|string',
             'quantity' => 'required|integer|min:1',
             'total_price' => 'required|numeric|min:0',
+            'is_select' => 'nullable|in:0,1',
+
         ]);
 
         $cart = Cart::create($validated);
@@ -77,6 +79,8 @@ class CartController extends Controller
             'color' => 'required|string',
             'quantity' => 'sometimes|required|integer|min:1',
             'total_price' => 'sometimes|required|numeric|min:0',
+            'is_select' => 'nullable|in:0,1',
+
         ]);
 
         $cart->update($validated);

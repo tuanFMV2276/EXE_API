@@ -21,6 +21,7 @@ class CreateCartTable extends Migration
             $table->string('size');
             $table->integer('quantity');
             $table->decimal('total_price', 18, 2);
+            $table->boolean('is_select')->nullable();
             $table->timestamps();
         });
     }

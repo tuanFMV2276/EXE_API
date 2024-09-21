@@ -16,6 +16,7 @@ class Cart extends Model
         'size',
         'quantity',
         'total_price',
+        'is_select'
     ];
 
 
