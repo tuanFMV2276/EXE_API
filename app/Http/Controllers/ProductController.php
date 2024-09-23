@@ -45,7 +45,7 @@ class ProductController extends Controller
     public function show($id)
     {
 
-        $product = Product::with(['designer'])->findOrFail($id);
+        $product = Product::with(['designer', 'images', 'sizes'])->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
