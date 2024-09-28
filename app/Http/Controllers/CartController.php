@@ -26,7 +26,7 @@ class CartController extends Controller
             'product_id' => 'required|exists:products,id',
             'size' => 'required|string',
             'color' => 'required|string',
-            'total_price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:1',
             'is_select' => 'nullable|in:0,1',
 
         ]);
