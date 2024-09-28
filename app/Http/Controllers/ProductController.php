@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['designer', 'images', 'sizes'])->get();
+        $products = Product::with(['designer', 'images', 'sizes', "colors"])->get();
 
         // $products = DB::table('products')
         //     ->join('designers', 'products.designer_id', '=', 'designers.id')
@@ -45,7 +45,7 @@ class ProductController extends Controller
     public function show($id)
     {
 
-        $product = Product::with(['designer', 'images', 'sizes'])->findOrFail($id);
+        $product = Product::with(['designer', 'images', 'sizes', 'colors'])->findOrFail($id);
 
         return response()->json([
             'status' => 'success',

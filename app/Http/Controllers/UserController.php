@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('subscriptions', 'designer')->get();
+        $users = User::with('subscriptions', 'designer', "cart")->get();
         return response()->json([
             'status' => 'success',
             'data' => $users
@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::with('premiumFeatures')->findOrFail($id);
+        $user = User::with('premiumFeatures', "cart", 'designer')->findOrFail($id);
 
         return response()->json([
             'status' => 'success',

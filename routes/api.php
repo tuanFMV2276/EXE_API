@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DesignerController;
 use App\Http\Controllers\DesignerMaterialController;
 use App\Http\Controllers\MaterialController;
@@ -33,12 +34,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('users', UserController::class);
+Route::apiResource('carts', CartController::class);
 Route::apiResource('designers', DesignerController::class);
 Route::apiResource('designer-materials', DesignerMaterialController::class);
 Route::apiResource('materials', MaterialController::class);
 Route::apiResource('news', NewsController::class);
 Route::apiResource('orders', OrderController::class);
-Route::apiResource('order-deatils', OrderDetailController::class);
+Route::apiResource('order-details', OrderDetailController::class);
 Route::apiResource('premium-features', PremiumFeatureController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('subscriptions', SubscriptionController::class);

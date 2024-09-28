@@ -61,10 +61,40 @@ class CartController extends Controller
     /**
      * Update the specified order detail in storage.
      */
+    // public function update(Request $request, $id)
+    // {
+    //     $cart = Cart::find($id);
+
+    //     if (!$cart) {
+    //         return response()->json([
+    //             'status' => 'error',
+    //             'message' => 'Cart not found'
+    //         ], 404);
+    //     }
+
+    //     $validated = $request->validate([
+    //         'user_id' => 'sometimes|required|exists:users,id',
+    //         'product_id' => 'sometimes|required|exists:products,id',
+    //         'size' => 'required|string',
+    //         'color' => 'required|string',
+    //         'quantity' => 'sometimes|required|integer|min:1',
+    //         'total_price' => 'sometimes|required|numeric|min:0',
+    //         'is_select' => 'nullable|in:0,1',
+
+    //     ]);
+
+    //     $cart->update($validated);
+
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Cart updated successfully',
+    //         'data' => $cart
+    //     ]);
+    // }
+
     public function update(Request $request, $id)
     {
         $cart = Cart::find($id);
-
         if (!$cart) {
             return response()->json([
                 'status' => 'error',
@@ -73,24 +103,20 @@ class CartController extends Controller
         }
 
         $validated = $request->validate([
-            'user_id' => 'sometimes|required|exists:users,id',
-            'product_id' => 'sometimes|required|exists:products,id',
-            'size' => 'required|string',
-            'color' => 'required|string',
-            'quantity' => 'sometimes|required|integer|min:1',
-            'total_price' => 'sometimes|required|numeric|min:0',
-            'is_select' => 'nullable|in:0,1',
-
+            'quantity' => 'required|integer|min:1',
         ]);
 
-        $cart->update($validated);
+        $cart->update([
+            'quantity' => $validated['quantity']
+        ]);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Cart updated successfully',
+            'message' => 'Cart quantity updated successfully',
             'data' => $cart
         ]);
     }
+
 
     /**
      * Remove the specified order detail from storage.

@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function cart()
     {
-        return $this->hasMany(Cart::class, 'customer_id');
+        return $this->hasMany(Cart::class, 'user_id');
     }
 
     // Một User có thể viết nhiều News
