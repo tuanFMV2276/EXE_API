@@ -45,7 +45,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $user = User::with('subscriptions', 'designer', 'premiumFeatures', 'cart')->where('email', $request['email'])->firstOrFail();
+        $user = User::with('subscriptions', 'designer', 'premiumFeatures', 'cart.product.images', 'cart.product.sizes', 'cart.product.colors')->where('email', $request['email'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json(['message' => 'Hi ' . $user->name . ', welcome to home', 'access_token' => $token, 'token_type' => 'Bearer', 'user' => $user]);

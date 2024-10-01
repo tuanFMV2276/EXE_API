@@ -90,4 +90,10 @@ class User extends Authenticatable
             ->withPivot('activated_date')
             ->withTimestamps();
     }
+
+    public function designerProducts()
+{
+    return $this->hasOneThrough(Product::class, Designer::class, 'user_id', 'designer_id', 'id', 'id');
+}
+
 }
