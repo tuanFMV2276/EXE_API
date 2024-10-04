@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -37,12 +38,20 @@ class OrderController extends Controller
 
         $order = Order::create($validated);
 
+        $userId = $order->customer_id;
+
+        $carts = Cart::where('user_id', $userId)->get();
+
+        if ($carts->isNotEmpty()) {
+            Cart::where('user_id', $userId)->delete();
+        }
         return response()->json([
             'status' => 'success',
             'message' => 'Order created successfully',
             'data' => $order
         ], 201);
     }
+
 
     public function show($id)
     {
