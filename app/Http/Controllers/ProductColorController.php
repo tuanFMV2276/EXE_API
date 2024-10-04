@@ -30,6 +30,7 @@ class ProductColorController extends Controller
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|exists:products,id',
             'color_name' => 'required|string',
+            'color_template' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -75,6 +76,7 @@ class ProductColorController extends Controller
         $validator = Validator::make($request->all(), [
             'product_id' => 'sometimes|required|exists:products,id',
             'color_name' => 'required|string',
+            'color_template' => 'required|string',
         ]);
 
         if ($validator->fails()) {
