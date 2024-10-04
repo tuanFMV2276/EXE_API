@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PremiumFeatureController;
+use App\Http\Controllers\ProductColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductSizeController;
@@ -15,6 +16,9 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFeatureController;
+use App\Models\ProductColor;
+use App\Models\ProductImage;
+use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,12 +47,15 @@ Route::apiResource('orders', OrderController::class);
 Route::apiResource('order-details', OrderDetailController::class);
 Route::apiResource('premium-features', PremiumFeatureController::class);
 Route::apiResource('products', ProductController::class);
+
+
 Route::apiResource('subscriptions', SubscriptionController::class);
 Route::apiResource('suppliers', SupplierController::class);
 Route::apiResource('user-features', UserFeatureController::class);
 
 Route::apiResource('images', ProductImageController::class);
-Route::apiResource('product-sizes', ProductSizeController::class);
+Route::apiResource('sizes', ProductSizeController::class);
+Route::apiResource('colors', ProductColorController::class);
 
 use App\Http\Controllers\API\AuthController;
 

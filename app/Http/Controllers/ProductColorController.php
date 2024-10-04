@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductImage;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ProductImageController extends Controller
+class ProductColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class ProductImageController extends Controller
      */
     public function index()
     {
-        return response()->json(ProductImage::with('product')->get(), 200);
+        $productColor = ProductColor::with('product')->get();
+        return response()->json($productColor, 200);
     }
 
     /**
@@ -28,15 +29,15 @@ class ProductImageController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|exists:products,id',
-            'image_url' => 'required|string',
+            'color_name' => 'required|string',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $productImage = ProductImage::create($request->all());
-        return response()->json($productImage, 201);
+        $productColor = ProductColor::create($request->all());
+        return response()->json($productColor, 201);
     }
 
     /**
@@ -47,13 +48,13 @@ class ProductImageController extends Controller
      */
     public function show($id)
     {
-        $productImage = ProductImage::with('product')->find($id);
+        $productColor = ProductColor::with('product')->find($id);
 
-        if (!$productImage) {
-            return response()->json(['message' => 'Product image not found'], 404);
+        if (!$productColor) {
+            return response()->json(['message' => 'Product color not found'], 404);
         }
 
-        return response()->json($productImage, 200);
+        return response()->json($productColor, 200);
     }
 
     /**
@@ -65,23 +66,23 @@ class ProductImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $productImage = ProductImage::find($id);
+        $productColor = ProductColor::find($id);
 
-        if (!$productImage) {
-            return response()->json(['message' => 'Product image not found'], 404);
+        if (!$productColor) {
+            return response()->json(['message' => 'Product color not found'], 404);
         }
 
         $validator = Validator::make($request->all(), [
-            'product_id' => 'required|exists:products,id',
-            'image_url' => 'required|string',
+            'product_id' => 'sometimes|required|exists:products,id',
+            'color_name' => 'required|string',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $productImage->update($request->all());
-        return response()->json($productImage, 200);
+        $productColor->update($request->all());
+        return response()->json($productColor, 200);
     }
 
     /**
@@ -92,13 +93,13 @@ class ProductImageController extends Controller
      */
     public function destroy($id)
     {
-        $productImage = ProductImage::find($id);
+        $productColor = ProductColor::find($id);
 
-        if (!$productImage) {
-            return response()->json(['message' => 'Product image not found'], 404);
+        if (!$productColor) {
+            return response()->json(['message' => 'Product color not found'], 404);
         }
 
-        $productImage->delete();
-        return response()->json(['message' => 'Product image deleted successfully'], 204);
+        $productColor->delete();
+        return response()->json(['message' => 'Product color deleted successfully'], 204);
     }
 }

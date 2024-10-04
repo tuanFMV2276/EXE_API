@@ -19,8 +19,8 @@ class CreateOrderDetailsTable extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('no action');
             $table->string('color');
             $table->string('size');
-            $table->integer('quantity');
-            $table->decimal('total_price', 18, 2);
+            $table->integer('quantity')->nullable();
+            $table->decimal('total_price', 18, 2)->nullable();
             $table->timestamps();
         });
     }

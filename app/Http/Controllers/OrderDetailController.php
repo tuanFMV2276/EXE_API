@@ -31,7 +31,7 @@ class OrderDetailController extends Controller
             'size' => 'required|string',
             'color' => 'required|string',
             'quantity' => 'required|integer|min:1',
-            'total_price' => 'required|numeric|min:0',
+            // 'total_price' => 'required|numeric|min:0',
         ]);
 
         $orderDetail = OrderDetail::create($validated);
@@ -53,7 +53,7 @@ class OrderDetailController extends Controller
         if (!$orderDetail) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Order detail not found'
+                'message' => 'Order detail not found'   
             ], 404);
         }
 
@@ -78,12 +78,12 @@ class OrderDetailController extends Controller
         }
 
         $validated = $request->validate([
-            'order_id' => 'sometimes|required|exists:orders,id',
-            'product_id' => 'sometimes|required|exists:products,id',
+            'order_id' => 'required|exists:orders,id',
+            'product_id' => 'required|exists:products,id',
             'size' => 'required|string',
             'color' => 'required|string',
-            'quantity' => 'sometimes|required|integer|min:1',
-            'total_price' => 'sometimes|required|numeric|min:0',
+            'quantity' => 'required|integer|min:1',
+            // 'total_price' => 'required|numeric|min:0',
         ]);
 
         $orderDetail->update($validated);

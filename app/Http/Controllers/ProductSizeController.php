@@ -30,7 +30,7 @@ class ProductSizeController extends Controller
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|exists:products,id',
             'size' => 'required|string',
-            'stock' => 'required|integer|min:0',
+            // 'stock' => 'required|integer|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -76,7 +76,7 @@ class ProductSizeController extends Controller
         $validator = Validator::make($request->all(), [
             'product_id' => 'sometimes|required|exists:products,id',
             'size' => 'sometimes|required|string',
-            'stock' => 'sometimes|required|integer|min:0',
+            // 'stock' => 'sometimes|required|integer|min:0',
         ]);
 
         if ($validator->fails()) {

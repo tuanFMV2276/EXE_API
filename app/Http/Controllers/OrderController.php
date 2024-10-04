@@ -65,6 +65,7 @@ class OrderController extends Controller
             'shipping_address' => 'required|string',
             'phone' => 'required|string',
             'payment_method' => 'required|string',
+            'status' => 'required|string',
         ]);
 
         $order->update($validated);
