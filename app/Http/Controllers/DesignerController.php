@@ -10,7 +10,7 @@ class DesignerController extends Controller
 {
     public function index()
     {
-        $designers = Designer::with('products')->get();
+        $designers = Designer::with('products',  'products.images', 'products.sizes', 'products.colors')->get();
 
         return response()->json([
             'status' => 'success',
@@ -49,7 +49,7 @@ class DesignerController extends Controller
     public function show($id)
     {
 
-        $designer = Designer::with('products')->findOrFail($id);
+        $designer = Designer::with('products', 'products.images', 'products.sizes', 'products.colors')->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
