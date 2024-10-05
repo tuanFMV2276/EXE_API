@@ -31,6 +31,8 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'designer_id' => 'required|exists:designers,id',
+            'category' => 'nullable|string',
+            'sub_category' => 'nullable|string',
         ]);
 
         $product = Product::create($validated);
@@ -78,10 +80,12 @@ class ProductController extends Controller
 
 
         $validated = $request->validate([
-            'product_name' => 'sometimes|required|string|max:255',
+            'product_name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'sometimes|required|numeric',
-            'designer_id' => 'sometimes|required|exists:designers,id',
+            'price' => 'required|numeric|min:0',
+            'designer_id' => 'required|exists:designers,id',
+            'category' => 'nullable|string',
+            'sub_category' => 'nullable|string',
         ]);
 
 
