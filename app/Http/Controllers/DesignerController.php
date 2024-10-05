@@ -49,7 +49,7 @@ class DesignerController extends Controller
     public function show($id)
     {
 
-        $designer = Designer::with('products', 'products.images', 'products.sizes', 'products.colors')->findOrFail($id);
+        $designer = Designer::with('products', 'products.images', 'products.sizes', 'products.colors','products.orderDetails.order')->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
