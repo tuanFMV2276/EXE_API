@@ -46,6 +46,7 @@ class DesignerController extends Controller
                     'product_size' => $orderDetail->product->sizes ?? null,
                     'product_color' => $orderDetail->product->colors ?? null,
                     'product_image' => $orderDetail->product->images ?? null,
+                    'payment_method' => $orderDetail->order->payment_method ?? 'N/A',
                     'price' => $orderDetail->product->price ?? 0,
                     // 'quantity' => $orderDetail->quantity ?? 0,
                     'status' => $orderDetail->order->status ?? 'N/A',
