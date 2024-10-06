@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Designer;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DesignerController extends Controller
 {
@@ -27,6 +28,33 @@ class DesignerController extends Controller
             'data' => $designers
         ]);
     }
+
+    public function getOrdersForDesigner($designerId)
+    {
+        $designer = \App\Models\Designer::with(['products.orderDetails.order.user'])
+            ->findOrFail($designerId);
+
+        $orderDetails = $designer->products->flatMap(function ($product) {
+            return $product->orderDetails->map(function ($orderDetail) {
+                return [
+                    'order_id' => $orderDetail->order->id ?? null,
+                    'order_date' => $orderDetail->order->created_at ?? null,
+                    'customer_name' => $orderDetail->order->user->name ?? 'N/A',
+                    'product_name' => $orderDetail->product->product_name ?? 'N/A',
+                    'product_name' => $orderDetail->product->price ?? 0,
+                    // 'quantity' => $orderDetail->quantity ?? 0,
+                    'status' => $orderDetail->order->status ?? 'N/A',
+
+                ];
+            });
+        });
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $orderDetails->filter()
+        ]);
+    }
+
 
     public function store(Request $request)
     {

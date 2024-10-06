@@ -48,19 +48,16 @@ class User extends Authenticatable
     ];
 
 
-    // Một User có thể là một Designer
     public function designer()
     {
         return $this->hasOne(Designer::class);
     }
 
-    // Một User có thể là một Supplier
     public function supplier()
     {
         return $this->hasOne(Supplier::class);
     }
 
-    // Một User (Customer) có thể có nhiều Orders
     public function orders()
     {
         return $this->hasMany(Order::class, 'customer_id');
@@ -71,19 +68,16 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class, 'user_id');
     }
 
-    // Một User có thể viết nhiều News
     public function news()
     {
         return $this->hasMany(News::class, 'author_id');
     }
 
-    // Một User có thể có nhiều Subscriptions
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
     }
 
-    // Một User có thể có nhiều PremiumFeatures thông qua UserFeatures
     public function premiumFeatures()
     {
         return $this->belongsToMany(PremiumFeature::class, 'user_features', 'user_id', 'feature_id')
