@@ -31,7 +31,7 @@ class DesignerController extends Controller
 
     public function getOrdersForDesigner($designerId)
     {
-        $designer = \App\Models\Designer::with(['products.orderDetails.order.user'])
+        $designer = \App\Models\Designer::with(['products.orderDetails.order.user', 'products.images', 'products.sizes', 'products.colors'])
             ->findOrFail($designerId);
 
         $orderDetails = $designer->products->flatMap(function ($product) {
@@ -41,7 +41,10 @@ class DesignerController extends Controller
                     'order_date' => $orderDetail->order->created_at ?? null,
                     'customer_name' => $orderDetail->order->user->name ?? 'N/A',
                     'product_name' => $orderDetail->product->product_name ?? 'N/A',
-                    'product_name' => $orderDetail->product->price ?? 0,
+                    'product_size' => $orderDetail->product->sizes ?? null,
+                    'product_color' => $orderDetail->product->colors ?? null,
+                    'product_image' => $orderDetail->product->images ?? null,
+                    'price' => $orderDetail->product->price ?? 0,
                     // 'quantity' => $orderDetail->quantity ?? 0,
                     'status' => $orderDetail->order->status ?? 'N/A',
 
