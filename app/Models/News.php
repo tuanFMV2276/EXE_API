@@ -13,6 +13,7 @@ class News extends Model
         'title',
         'content',
         'author_id',
+        'published_at',
     ];
 
     public function author()

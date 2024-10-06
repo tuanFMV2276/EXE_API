@@ -17,6 +17,7 @@ class CreateProductSizesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('size');
+            $table->string('url_3d')->nullable();
             $table->float('min_width')->nullable();;
             $table->float('max_width')->nullable();;
             $table->float('min_heigh')->nullable();;

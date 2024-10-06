@@ -10,7 +10,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::with('user')->get();
+        $news = News::with('author')->get();
 
         return Response()->json([
             'status' => 'success',
@@ -18,13 +18,33 @@ class NewsController extends Controller
         ]);
     }
 
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'content' => 'required|string',
+    //         'published_at' => 'nullable|date',
+    //     ]);
+    //     $validated['published_at'] = $validated['published_at'] ?? now();
+    //     $news = News::create($validated);
+
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'News created successfully',
+    //         'data' => $news
+    //     ], 201);
+    // }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'published_at' => 'nullable|date',
+            'author_id' => 'required|exists:users,id',
+
         ]);
+
+        $validated['update_at'] = now();
 
         $news = News::create($validated);
 
@@ -34,6 +54,7 @@ class NewsController extends Controller
             'data' => $news
         ], 201);
     }
+
 
     public function show($id)
     {
@@ -52,8 +73,8 @@ class NewsController extends Controller
         $validated = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'content' => 'sometimes|required|string',
-            'published_at' => 'nullable|date',
         ]);
+        $validated['update_at'] = now();
 
         $news->update($validated);
 
