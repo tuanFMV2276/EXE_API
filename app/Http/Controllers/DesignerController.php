@@ -39,7 +39,9 @@ class DesignerController extends Controller
                 return [
                     'order_id' => $orderDetail->order->id ?? null,
                     'order_date' => $orderDetail->order->created_at ?? null,
-                    'customer_name' => $orderDetail->order->user->name ?? 'N/A',
+                    'customer_name' => $orderDetail->order->full_name ?? 'N/A',
+                    'phone' => $orderDetail->order->phone ?? 'N/A',
+                    'address' => $orderDetail->order->shipping_address ?? 'N/A',
                     'product_name' => $orderDetail->product->product_name ?? 'N/A',
                     'product_size' => $orderDetail->product->sizes ?? null,
                     'product_color' => $orderDetail->product->colors ?? null,
