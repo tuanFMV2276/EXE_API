@@ -43,4 +43,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductColor::class);
     }
+
+    public function model_3ds()
+    {
+        return $this->hasMany(Model_3d::class);
+    }
 }

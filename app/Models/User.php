@@ -92,8 +92,12 @@ class User extends Authenticatable
     }
 
     public function designerProducts()
-{
-    return $this->hasOneThrough(Product::class, Designer::class, 'user_id', 'designer_id', 'id', 'id');
-}
+    {
+        return $this->hasOneThrough(Product::class, Designer::class, 'user_id', 'designer_id', 'id', 'id');
+    }
 
+    public function model_3ds()
+    {
+        return $this->hasMany(Model_3d::class);
+    }
 }
