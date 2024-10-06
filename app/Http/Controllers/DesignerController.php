@@ -18,6 +18,16 @@ class DesignerController extends Controller
         ]);
     }
 
+    public function getOrderFromCustomer($id)
+    {
+        $designers = Designer::with('products.orderDetails.order')->findOrFail($id);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $designers
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -49,7 +59,7 @@ class DesignerController extends Controller
     public function show($id)
     {
 
-        $designer = Designer::with('products', 'products.images', 'products.sizes', 'products.colors','products.orderDetails.order')->findOrFail($id);
+        $designer = Designer::with('products', 'products.images', 'products.sizes', 'products.colors')->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
