@@ -14,6 +14,8 @@ class News extends Model
         'content',
         'author_id',
         'published_at',
+        'image_url',
+        'category'
     ];
 
     public function author()

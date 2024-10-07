@@ -40,6 +40,8 @@ class NewsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'image_url' => 'required|string',
+            'category' => 'required|string',
             'author_id' => 'required|exists:users,id',
 
         ]);
@@ -73,6 +75,8 @@ class NewsController extends Controller
         $validated = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'content' => 'sometimes|required|string',
+            'image_url' => 'required|string',
+            'category' => 'required|string',
         ]);
         $validated['update_at'] = now();
 
