@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Designer;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class DesignerController extends Controller
         $orderDetails = $designer->products->flatMap(function ($product) {
             return $product->orderDetails->map(function ($orderDetail) {
                 return [
-                    'order_id' => $orderDetail->order->id ?? null,
+                    'order_detail_id' => $orderDetail->id ?? null,
                     'order_date' => $orderDetail->order->created_at ?? null,
                     'customer_name' => $orderDetail->order->full_name ?? 'N/A',
                     'phone' => $orderDetail->order->phone ?? 'N/A',
@@ -50,7 +51,7 @@ class DesignerController extends Controller
                     'payment_method' => $orderDetail->order->payment_method ?? 'N/A',
                     'price' => $orderDetail->product->price ?? 0,
                     // 'quantity' => $orderDetail->quantity ?? 0,
-                    'status' => $orderDetail->order->status ?? 'N/A',
+                    'status' => $orderDetail->status ?? 'N/A',
 
                 ];
             });
@@ -124,20 +125,20 @@ class DesignerController extends Controller
     }
 
 
-    public function updateStatusOrder(Request $request, $id)
+    public function updateStatusOrderDetail(Request $request, $id)
     {
-        $order = Order::findOrFail($id);
+        $orderDetail = OrderDetail::findOrFail($id);
 
         $validated = $request->validate([
             'status' => 'required|string',
         ]);
 
-        $order->update($validated);
+        $orderDetail->update($validated);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Order updated successfully',
-            'data' => $order
+            'data' => $orderDetail
         ], 200);
     }
 

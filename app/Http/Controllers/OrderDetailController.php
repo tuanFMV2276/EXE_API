@@ -84,6 +84,7 @@ class OrderDetailController extends Controller
             'color' => 'required|string',
             'quantity' => 'required|integer|min:1',
             // 'total_price' => 'required|numeric|min:0',
+            'status' => 'required|string'
         ]);
 
         $orderDetail->update($validated);

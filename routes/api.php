@@ -65,4 +65,4 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 
 
 Route::get('designers/order-from-customer/{id}', [DesignerController::class, 'getOrdersForDesigner']);
-Route::put('designers/order/update-status/{id}', [DesignerController::class, 'updateStatusOrder']);
+Route::put('designers/order-detail/update-status/{id}', [DesignerController::class, 'updateStatusOrderDetail']);

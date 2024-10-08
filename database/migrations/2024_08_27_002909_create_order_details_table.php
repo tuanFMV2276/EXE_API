@@ -21,6 +21,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('size');
             $table->integer('quantity')->nullable();
             $table->decimal('total_price', 18, 2)->nullable();
+            $table->string('status')->default("Waiting")->nullable();
             $table->timestamps();
         });
     }
