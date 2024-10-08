@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Designer;
+use App\Models\Order;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -119,6 +120,24 @@ class DesignerController extends Controller
             'status' => 'success',
             'message' => 'Designer updated successfully',
             'data' => $designer
+        ], 200);
+    }
+
+
+    public function updateStatusOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+
+        $validated = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $order->update($validated);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Order updated successfully',
+            'data' => $order
         ], 200);
     }
 
