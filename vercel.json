@@ -5,10 +5,10 @@
         "api/index.php": { "runtime": "vercel-php@0.6.1" }
     },
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
+    {
+      "src": "/api/(.*)",
+      "dest": "/public/index.php"
+    }
     ],
     "env": {
         "APP_ENV": "production",
