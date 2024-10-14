@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('users', UserController::class);
 Route::apiResource('carts', CartController::class);
-Route::apiResource('designers', DesignerController::class);
+// Route::apiResource('designers', DesignerController::class);
 Route::apiResource('designer-materials', DesignerMaterialController::class);
 Route::apiResource('materials', MaterialController::class);
 Route::apiResource('news', NewsController::class);
@@ -66,3 +66,18 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 
 Route::get('designers/order-from-customer/{id}', [DesignerController::class, 'getOrdersForDesigner']);
 Route::put('designers/order-detail/update-status/{id}', [DesignerController::class, 'updateStatusOrderDetail']);
+
+// GET /designers - Lấy danh sách tất cả designers
+Route::get('/designers', [DesignerController::class, 'index'])->name('designers.index');
+
+// POST /designers - Tạo một designer mới
+Route::post('/designers', [DesignerController::class, 'store'])->name('designers.store');
+
+// GET /designers/{designer} - Lấy chi tiết một designer cụ thể
+Route::get('/designers/{designer}', [DesignerController::class, 'show'])->name('designers.show');
+
+// PUT /designers/{designer} - Cập nhật thông tin của một designer
+Route::put('/designers/{designer}', [DesignerController::class, 'update'])->name('designers.update');
+
+// DELETE /designers/{designer} - Xóa một designer
+Route::delete('/designers/{designer}', [DesignerController::class, 'destroy'])->name('designers.destroy');
