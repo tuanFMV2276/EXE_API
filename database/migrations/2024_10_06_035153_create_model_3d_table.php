@@ -13,7 +13,7 @@ class CreateModel3dTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_3d', function (Blueprint $table) {
+        Schema::create('model_3ds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('no action');
             $table->foreignId('product_id')->constrained('products')->onDelete('no action');
