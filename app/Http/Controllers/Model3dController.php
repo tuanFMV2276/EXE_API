@@ -30,11 +30,11 @@ class Model3dController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
-            'bust' => 'required|numberic',
-            'waist' => 'required|numberic',
-            'hips' => 'required|numberic',
-            'weight' => 'required|numberic|nullable',
-            'height' => 'required|numberic|nullable',
+            'bust' => 'nullable|numeric|min:0|max:500',
+            'waist' => 'nullable|numeric|min:0|max:500',
+            'hips' => 'nullable|numeric|min:0|max:500',
+            'weight' => 'nullable|numeric|min:0|max:500',
+            'height' => 'nullable|numeric|min:0|max:500',
         ]);
 
         if ($validator->fails()) {
@@ -78,12 +78,11 @@ class Model3dController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'bust' => 'required|numberic',
-            'waist' => 'required|numberic',
-            'hips' => 'required|numberic',
-            'weight' => 'required|numberic|nullable',
-            'height' => 'required|numberic|nullable',
-            // 'stock' => 'sometimes|required|integer|min:0',
+            'bust' => 'nullable|numeric|min:0|max:500',
+            'waist' => 'nullable|numeric|min:0|max:500',
+            'hips' => 'nullable|numeric|min:0|max:500',
+            'weight' => 'nullable|numeric|min:0|max:500',
+            'height' => 'nullable|numeric|min:0|max:500',
         ]);
 
         if ($validator->fails()) {
