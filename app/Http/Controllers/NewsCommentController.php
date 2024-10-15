@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News_Comment;
+use App\Models\NewsComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +16,7 @@ class NewsCommentController extends Controller
      */
     public function index()
     {
-        $comment = News_Comment::with('news', 'user')->get();
+        $comment = NewsComment::with('news', 'user')->get();
         return response()->json($comment, 200);
     }
 
@@ -37,7 +38,7 @@ class NewsCommentController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $comment = News_Comment::create($request->all());
+        $comment = NewsComment::create($request->all());
         return response()->json($comment, 201);
     }
 
@@ -49,7 +50,7 @@ class NewsCommentController extends Controller
      */
     public function show($id)
     {
-        $comment = News_Comment::with('news')->find($id);
+        $comment = NewsComment::with('news')->find($id);
 
         if (!$comment) {
             return response()->json(['message' => 'Comment not found'], 404);
@@ -67,7 +68,7 @@ class NewsCommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comment = News_Comment::find($id);
+        $comment = NewsComment::find($id);
 
         if (!$comment) {
             return response()->json(['message' => 'Comment not found'], 404);
@@ -93,7 +94,7 @@ class NewsCommentController extends Controller
      */
     public function destroy($id)
     {
-        $comment = News_Comment::find($id);
+        $comment = NewsComment::find($id);
 
         if (!$comment) {
             return response()->json(['message' => 'Comment not found'], 404);

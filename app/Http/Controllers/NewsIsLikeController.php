@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News_Is_Like;
+use App\Models\NewsIsLike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,7 @@ class NewsIsLikeController extends Controller
      */
     public function index()
     {
-        $is_like = News_Is_Like::with('news', 'user')->get();
+        $is_like = NewsIsLike::with('news', 'user')->get();
         return response()->json($is_like, 200);
     }
 
@@ -38,7 +39,7 @@ class NewsIsLikeController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $is_like = News_Is_Like::create($request->all());
+        $is_like = NewsIsLike::create($request->all());
         return response()->json($is_like, 201);
     }
 
@@ -50,7 +51,7 @@ class NewsIsLikeController extends Controller
      */
     public function show($id)
     {
-        $is_like = News_Is_Like::with('news')->find($id);
+        $is_like = NewsIsLike::with('news')->find($id);
 
         if (!$is_like) {
             return response()->json(['message' => 'Is_like not found'], 404);
@@ -68,7 +69,7 @@ class NewsIsLikeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $is_like = News_Is_Like::find($id);
+        $is_like = NewsIsLike::find($id);
 
         if (!$is_like) {
             return response()->json(['message' => 'Is_like not found'], 404);
@@ -94,7 +95,7 @@ class NewsIsLikeController extends Controller
      */
     public function destroy($id)
     {
-        $is_like = News_Is_Like::find($id);
+        $is_like = NewsIsLike::find($id);
 
         if (!$is_like) {
             return response()->json(['message' => 'Is_like not found'], 404);

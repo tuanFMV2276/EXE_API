@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class News_Is_Like extends Model
+class NewsComment extends Model
 {
+
     use HasFactory;
+    protected $table = 'news_comment';
+
 
     protected $fillable = [
         'user_id',
         'news_id',
-        'is_like',
+        'comment',
     ];
 
 
