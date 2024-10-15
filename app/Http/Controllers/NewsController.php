@@ -60,7 +60,7 @@ class NewsController extends Controller
 
     public function show($id)
     {
-        $news = News::findOrFail($id);
+        $news = News::with(['author', 'comment', 'is_like'])->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
