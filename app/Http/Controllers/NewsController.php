@@ -10,7 +10,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::with('author')->get();
+        $news = News::with('author', 'comment', 'is_like')->get();
 
         return Response()->json([
             'status' => 'success',

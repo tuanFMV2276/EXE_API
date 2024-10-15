@@ -25,12 +25,12 @@ class News extends Model
 
     public function comment()
     {
-        return $this->hasMany(News_Comment::class);
+        return $this->hasMany(NewsComment::class);
     }
 
 
     public function is_like()
     {
-        return $this->hasMany(News_Is_Like::class);
+        return $this->hasMany(NewsIsLike::class);
     }
 }
