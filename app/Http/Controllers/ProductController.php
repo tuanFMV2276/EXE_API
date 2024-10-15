@@ -33,6 +33,7 @@ class ProductController extends Controller
             'designer_id' => 'required|exists:designers,id',
             'category' => 'nullable|string',
             'sub_category' => 'nullable|string',
+            'sale' => 'nullable|numeric|min:0|max:100'
         ]);
 
         $product = Product::create($validated);
@@ -86,6 +87,8 @@ class ProductController extends Controller
             'designer_id' => 'required|exists:designers,id',
             'category' => 'nullable|string',
             'sub_category' => 'nullable|string',
+            'sale' => 'nullable|numeric|min:0|max:100',
+            'is_bestSeller' => 'nullable|numeric|min:0|max:100',
         ]);
 
 

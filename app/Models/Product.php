@@ -16,7 +16,9 @@ class Product extends Model
         'price',
         'is_premium',
         'category',
-        'sub_category'
+        'sub_category',
+        'sale',
+        'is_bestSeller'
     ];
 
     public function designer()
