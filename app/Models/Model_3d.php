@@ -15,6 +15,8 @@ class Model_3d extends Model
         'bust',
         'waist',
         'hips',
+        'weight',
+        'height'
 
     ];
 

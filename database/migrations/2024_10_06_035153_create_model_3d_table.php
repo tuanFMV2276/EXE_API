@@ -17,9 +17,11 @@ class CreateModel3dTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('no action');
             $table->foreignId('product_id')->constrained('products')->onDelete('no action');
-            $table->decimal('bust', 8, 2);
-            $table->decimal('waist', 8, 2);
-            $table->decimal('hips', 8, 2);
+            $table->decimal('bust', 8, 2)->nullable();
+            $table->decimal('waist', 8, 2)->nullable();
+            $table->decimal('hips', 8, 2)->nullable();
+            $table->decimal('weight', 8, 2)->nullable();
+            $table->decimal('height', 8, 2)->nullable();
             $table->timestamps();
         });
     }
