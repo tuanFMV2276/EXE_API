@@ -22,4 +22,15 @@ class News extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function comment()
+    {
+        return $this->hasMany(News_Comment::class);
+    }
+
+
+    public function is_like()
+    {
+        return $this->hasMany(News_Is_Like::class);
+    }
 }

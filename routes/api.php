@@ -5,7 +5,9 @@ use App\Http\Controllers\DesignerController;
 use App\Http\Controllers\DesignerMaterialController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\Model3dController;
+use App\Http\Controllers\NewsCommentController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsIsLikeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PremiumFeatureController;
@@ -59,6 +61,10 @@ Route::apiResource('sizes', ProductSizeController::class);
 Route::apiResource('colors', ProductColorController::class);
 
 Route::apiResource('model-3d', Model3dController::class);
+
+
+Route::apiResource('comment', NewsCommentController::class);
+Route::apiResource('islike', NewsIsLikeController::class);
 
 use App\Http\Controllers\API\AuthController;
 
