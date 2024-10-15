@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\DesignerController;
 use App\Http\Controllers\DesignerMaterialController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\Model3dController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -57,6 +58,8 @@ Route::apiResource('images', ProductImageController::class);
 Route::apiResource('sizes', ProductSizeController::class);
 Route::apiResource('colors', ProductColorController::class);
 
+Route::apiResource('model-3d', Model3dController::class);
+
 use App\Http\Controllers\API\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -67,17 +70,17 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::get('designers/order-from-customer/{id}', [DesignerController::class, 'getOrdersForDesigner']);
 Route::put('designers/order-detail/update-status/{id}', [DesignerController::class, 'updateStatusOrderDetail']);
 
-// GET /designers - Lấy danh sách tất cả designers
+
 Route::get('/designers', [DesignerController::class, 'index'])->name('designers.index');
 
-// POST /designers - Tạo một designer mới
+
 Route::post('/designers', [DesignerController::class, 'store'])->name('designers.store');
 
-// GET /designers/{designer} - Lấy chi tiết một designer cụ thể
+
 Route::get('/designers/{designer}', [DesignerController::class, 'show'])->name('designers.show');
 
-// PUT /designers/{designer} - Cập nhật thông tin của một designer
+
 Route::put('/designers/{designer}', [DesignerController::class, 'update'])->name('designers.update');
 
-// DELETE /designers/{designer} - Xóa một designer
+
 Route::delete('/designers/{designer}', [DesignerController::class, 'destroy'])->name('designers.destroy');
