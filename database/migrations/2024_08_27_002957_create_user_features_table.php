@@ -18,6 +18,8 @@ class CreateUserFeaturesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('no action');
             $table->foreignId('feature_id')->constrained('premium_features')->onDelete('no action');
             $table->dateTime('activated_date')->default(now());
+            $table->dateTime('expiry_date')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

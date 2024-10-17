@@ -9,7 +9,7 @@ class PremiumFeatureController extends Controller
 {
     public function index()
     {
-        $premiumFeatures = PremiumFeature::with('subscriptions')->get();
+        $premiumFeatures = PremiumFeature::get();
 
         return response()->json([
             'status' => 'success',
@@ -20,8 +20,10 @@ class PremiumFeatureController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'feature_name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'duration_days' => 'required|string|max:255'
         ]);
 
         $premiumFeature = PremiumFeature::create($validated);
@@ -35,7 +37,7 @@ class PremiumFeatureController extends Controller
 
     public function show($id)
     {
-        $premiumFeature = PremiumFeature::with('subscriptions')->findOrFail($id);
+        $premiumFeature = PremiumFeature::findOrFail($id);
 
         return response()->json([
             'status' => 'success',
@@ -48,8 +50,10 @@ class PremiumFeatureController extends Controller
         $premiumFeature = PremiumFeature::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
+            'feature_name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'duration_days' => 'required|string|max:255'
         ]);
 
         $premiumFeature->update($validated);

@@ -12,7 +12,10 @@ class PremiumFeature extends Model
     protected $fillable = [
         'feature_name',
         'description',
-        'is_designer_feature',
+        'price',
+        'duration_days',
+        'is_feature',
+
     ];
 
     public function users()

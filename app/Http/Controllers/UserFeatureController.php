@@ -22,8 +22,7 @@ class UserFeatureController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'premium_feature_id' => 'required|exists:premium_features,id',
-            'status' => 'required|string',
+            'feature_id' => 'required|exists:premium_features,id',
         ]);
 
         $userFeature = UserFeature::create($validated);
@@ -49,7 +48,7 @@ class UserFeatureController extends Controller
     {
         $userFeature = UserFeature::findOrFail($id);
         $validated = $request->validate([
-            'status' => 'sometimes|required|string',
+            'is_active' => 'required',
         ]);
 
         $userFeature->update($validated);

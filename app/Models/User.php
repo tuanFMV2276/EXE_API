@@ -94,4 +94,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Model_3d::class);
     }
+
+    public function user_feature()
+    {
+        return $this->hasMany(UserFeature::class);
+    }
 }

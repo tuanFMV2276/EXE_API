@@ -17,10 +17,11 @@ class CreatePremiumFeaturesTable extends Migration
             $table->id();
             $table->string('feature_name');
             $table->text('description')->nullable();
-            $table->boolean('is_designer_feature')->default(false);
+            $table->decimal('price', 8, 2);
+            $table->integer('duration_days');
+            $table->boolean('is_feature')->default(true);
             $table->timestamps();
         });
-        
     }
 
     /**

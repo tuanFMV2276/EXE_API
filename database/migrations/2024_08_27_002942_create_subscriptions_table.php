@@ -15,11 +15,9 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('no action');
-            $table->enum('subscription_type', ['Designer', 'Customer']);
-            $table->dateTime('start_date')->default(now());
-            $table->dateTime('end_date')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('subscription_name');
+            $table->integer('duration_days');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

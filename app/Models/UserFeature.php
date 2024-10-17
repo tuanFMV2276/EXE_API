@@ -13,6 +13,7 @@ class UserFeature extends Model
         'user_id',
         'feature_id',
         'activated_date',
+        'expiry_date',
     ];
 
     public function user()
