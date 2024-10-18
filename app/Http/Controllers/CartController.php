@@ -42,7 +42,7 @@ class CartController extends Controller
 
     public function show($id)
     {
-        $cart = Cart::with(['user', 'product'])->find($id);
+        $cart = Cart::with(['product'])->find($id);
 
         if (!$cart) {
             return response()->json([
