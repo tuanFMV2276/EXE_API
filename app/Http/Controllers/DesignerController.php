@@ -50,7 +50,6 @@ class DesignerController extends Controller
                     'product_image' => $orderDetail->product->images ?? null,
                     'payment_method' => $orderDetail->order->payment_method ?? 'N/A',
                     'price' => $orderDetail->product->price ?? 0,
-                    // 'quantity' => $orderDetail->quantity ?? 0,
                     'status' => $orderDetail->status ?? 'N/A',
 
                 ];
