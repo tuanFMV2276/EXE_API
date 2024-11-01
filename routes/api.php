@@ -19,9 +19,6 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFeatureController;
-use App\Models\ProductColor;
-use App\Models\ProductImage;
-use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

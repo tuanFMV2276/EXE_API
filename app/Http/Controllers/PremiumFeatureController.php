@@ -23,7 +23,7 @@ class PremiumFeatureController extends Controller
             'feature_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
-            'duration_days' => 'required|string|max:255'
+            'duration_days' => 'required'
         ]);
 
         $premiumFeature = PremiumFeature::create($validated);
@@ -53,7 +53,7 @@ class PremiumFeatureController extends Controller
             'feature_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
-            'duration_days' => 'required|string|max:255'
+            'duration_days' => 'required'
         ]);
 
         $premiumFeature->update($validated);
